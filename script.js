@@ -276,3 +276,76 @@ displayNetflixQuiz();
 // On submit, show Netflix quiz results
 document.getElementById('netflix-submit').addEventListener('click', showNetflixResults);
 
+// ... (Keep the Apple quiz code if you want both quizzes)
+
+// Google Quiz
+const googleQuestions = [
+    {
+        question: "Which product is Google's popular search engine?",
+        options: ["Gmail", "Drive", "Search", "Docs"],
+        answer: 2
+    },
+    {
+        question: "Which mobile operating system is developed by Google?",
+        options: ["iOS", "Windows Mobile", "Android", "Blackberry OS"],
+        answer: 2
+    },
+    {
+        question: "What was the name of Google's browser released in 2008?",
+        options: ["Safari", "Firefox", "Opera", "Chrome"],
+        answer: 3
+    }
+];
+
+// Function to display the Google quiz
+function displayGoogleQuiz() {
+    const googleQuizContainer = document.getElementById('google-quiz-container');
+    let output = [];
+
+    googleQuestions.forEach((currentQuestion, questionNumber) => {
+        const answers = [];
+        for (let letter in currentQuestion.options) {
+            answers.push(
+                `<label>
+                    <input type="radio" name="google-question${questionNumber}" value="${letter}">
+                    ${currentQuestion.options[letter]}
+                </label><br>`
+            );
+        }
+        output.push(
+            `<div class="question">${currentQuestion.question}</div>
+            <div class="answers">${answers.join('')}</div><br>`
+        );
+    });
+
+    googleQuizContainer.innerHTML = output.join('');
+}
+
+// Function to show the Google quiz results
+function showGoogleResults() {
+    const answerContainers = document.querySelectorAll('#google-quiz-container .answers');
+    let correct = 0;
+
+    googleQuestions.forEach((currentQuestion, questionNumber) => {
+        const answerContainer = answerContainers[questionNumber];
+        const selector = `input[name=google-question${questionNumber}]:checked`;
+        const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+        if (userAnswer == currentQuestion.answer) {
+            correct++;
+            answerContainers[questionNumber].style.color = 'green';
+        } else {
+            answerContainers[questionNumber].style.color = 'red';
+        }
+    });
+
+    alert(`You got ${correct} out of ${googleQuestions.length} questions right!`);
+}
+
+// Display the Google quiz
+displayGoogleQuiz();
+
+// On submit, show Google quiz results
+document.getElementById('google-submit').addEventListener('click', showGoogleResults);
+
+
