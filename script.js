@@ -135,4 +135,21 @@ document.addEventListener("DOMContentLoaded", function() {
         },
         {
             question: "Which mobile operating system is developed by Google?",
-            options: ["iOS", "Windows Mobile", "Android", "Black
+            options: ["iOS", "Windows Mobile", "Android", "Blackberry OS"],
+            answer: 2
+        },
+        {
+            question: "What was the name of Google's browser released in 2008?",
+            options: ["Safari", "Firefox", "Opera", "Chrome"],
+            answer: 3
+        }
+    ];
+
+    // Instantiate quizzes
+    new Quiz(appleQuestions, 'apple-quiz-container', 'apple-submit');
+    new Quiz(amazonQuestions, 'amazon-quiz-container', 'amazon-submit');
+    new Quiz(facebookQuestions, 'facebook-quiz-container', 'facebook-submit');
+    new Quiz(netflixQuestions, 'netflix-quiz-container', 'netflix-submit');
+    new Quiz(googleQuestions, 'google-quiz-container', 'google-submit');
+
+});
