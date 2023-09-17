@@ -279,6 +279,8 @@ document.getElementById('netflix-submit').addEventListener('click', showNetflixR
 // ... (Keep the Apple quiz code if you want both quizzes)
 
 // Google Quiz
+document.addEventListener("DOMContentLoaded", function() {
+
 const googleQuestions = [
     {
         question: "Which product is Google's popular search engine?",
@@ -348,4 +350,4 @@ displayGoogleQuiz();
 // On submit, show Google quiz results
 document.getElementById('google-submit').addEventListener('click', showGoogleResults);
 
-
+});
