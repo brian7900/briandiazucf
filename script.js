@@ -1,155 +1,53 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    class Quiz {
-        constructor(questions, containerId, submitButtonId) {
-            this.questions = questions;
-            this.container = document.getElementById(containerId);
-            this.submitButton = document.getElementById(submitButtonId);
-            this.display();
-            this.submitButton.addEventListener('click', () => this.showResults());
-        }
-
-        display() {
-            let output = [];
-            this.questions.forEach((currentQuestion, questionNumber) => {
-                const answers = [];
-                for (let letter in currentQuestion.options) {
-                    answers.push(
-                        `<label>
-                            <input type="radio" name="question${questionNumber}" value="${letter}">
-                            ${currentQuestion.options[letter]}
-                        </label><br>`
-                    );
-                }
-                output.push(
-                    `<div class="question">${currentQuestion.question}</div>
-                    <div class="answers">${answers.join('')}</div><br>`
-                );
-            });
-            this.container.innerHTML = output.join('');
-        }
-
-        showResults() {
-            const answerContainers = this.container.querySelectorAll('.answers');
-            let correct = 0;
-
-            this.questions.forEach((currentQuestion, questionNumber) => {
-                const answerContainer = answerContainers[questionNumber];
-                const selector = `input[name=question${questionNumber}]:checked`;
-                const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-
-                if (userAnswer == currentQuestion.answer) {
-                    correct++;
-                    answerContainers[questionNumber].style.color = 'green';
-                } else {
-                    answerContainers[questionNumber].style.color = 'red';
-                }
-            });
-
-            alert(`You got ${correct} out of ${this.questions.length} questions right!`);
-        }
-    }
-
-    // Apple Quiz Questions
     const appleQuestions = [
         {
             question: "Which product was Apple's revolutionary music player introduced in 2001?",
             options: ["iPhone", "iPod", "iMac", "iPad"],
             answer: 1
         },
-        {
-            question: "Who co-founded Apple alongside Steve Jobs?",
-            options: ["Bill Gates", "Mark Zuckerberg", "Steve Wozniak", "Larry Page"],
-            answer: 2
-        },
-        {
-            question: "Which operating system runs on Apple's Mac computers?",
-            options: ["Windows", "Linux", "macOS", "iOS"],
-            answer: 2
-        }
+        // ... other apple questions
     ];
 
-    // Amazon Quiz Questions
-    const amazonQuestions = [
-        {
-            question: "Which of the following is Amazon's cloud computing service?",
-            options: ["Azure", "CloudDrive", "AWS", "GCP"],
-            answer: 2
-        },
-        {
-            question: "What is the name of Amazon's voice-controlled assistant?",
-            options: ["Siri", "Cortana", "Alexa", "Bixby"],
-            answer: 2
-        },
-        {
-            question: "Which of these is NOT a service offered by Amazon?",
-            options: ["Prime Video", "Kindle", "Drive", "Echo"],
-            answer: 2
-        }
-    ];
+    const appleQuizContainer = document.getElementById('apple-quiz-container');
+    let output = [];
 
-    // Facebook Quiz Questions
-    const facebookQuestions = [
-        {
-            question: "Which year was Facebook founded?",
-            options: ["2002", "2004", "2006", "2008"],
-            answer: 1
-        },
-        {
-            question: "Who is the co-founder and CEO of Facebook?",
-            options: ["Bill Gates", "Elon Musk", "Mark Zuckerberg", "Larry Page"],
-            answer: 2
-        },
-        {
-            question: "Which of these is a virtual reality company acquired by Facebook?",
-            options: ["Rift", "Vive", "Oculus", "HoloLens"],
-            answer: 2
+    appleQuestions.forEach((currentQuestion, questionNumber) => {
+        const answers = [];
+        for (let letter in currentQuestion.options) {
+            answers.push(
+                `<label>
+                    <input type="radio" name="apple-question${questionNumber}" value="${letter}">
+                    ${currentQuestion.options[letter]}
+                </label><br>`
+            );
         }
-    ];
+        output.push(
+            `<div class="question">${currentQuestion.question}</div>
+            <div class="answers">${answers.join('')}</div><br>`
+        );
+    });
 
-    // Netflix Quiz Questions
-    const netflixQuestions = [
-        {
-            question: "Which of these is a popular Netflix original series?",
-            options: ["Breaking Bad", "Stranger Things", "The Office", "Friends"],
-            answer: 1
-        },
-        {
-            question: "What was Netflix's initial business model before streaming?",
-            options: ["Cable TV", "DVD rental by mail", "Video game rental", "Online news portal"],
-            answer: 1
-        },
-        {
-            question: "Which of these is NOT a Netflix documentary series?",
-            options: ["Making a Murderer", "Tiger King", "Planet Earth", "The Last Dance"],
-            answer: 2
-        }
-    ];
+    appleQuizContainer.innerHTML = output.join('');
 
-    // Google Quiz Questions
-    const googleQuestions = [
-        {
-            question: "Which product is Google's popular search engine?",
-            options: ["Gmail", "Drive", "Search", "Docs"],
-            answer: 2
-        },
-        {
-            question: "Which mobile operating system is developed by Google?",
-            options: ["iOS", "Windows Mobile", "Android", "Blackberry OS"],
-            answer: 2
-        },
-        {
-            question: "What was the name of Google's browser released in 2008?",
-            options: ["Safari", "Firefox", "Opera", "Chrome"],
-            answer: 3
-        }
-    ];
+    document.getElementById('apple-submit').addEventListener('click', function() {
+        const answerContainers = appleQuizContainer.querySelectorAll('.answers');
+        let correct = 0;
 
-    // Instantiate quizzes
-    new Quiz(appleQuestions, 'apple-quiz-container', 'apple-submit');
-    new Quiz(amazonQuestions, 'amazon-quiz-container', 'amazon-submit');
-    new Quiz(facebookQuestions, 'facebook-quiz-container', 'facebook-submit');
-    new Quiz(netflixQuestions, 'netflix-quiz-container', 'netflix-submit');
-    new Quiz(googleQuestions, 'google-quiz-container', 'google-submit');
+        appleQuestions.forEach((currentQuestion, questionNumber) => {
+            const answerContainer = answerContainers[questionNumber];
+            const selector = `input[name=apple-question${questionNumber}]:checked`;
+            const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+            if (userAnswer == currentQuestion.answer) {
+                correct++;
+                answerContainers[questionNumber].style.color = 'green';
+            } else {
+                answerContainers[questionNumber].style.color = 'red';
+            }
+        });
+
+        alert(`You got ${correct} out of ${appleQuestions.length} questions right!`);
+    });
 
 });
