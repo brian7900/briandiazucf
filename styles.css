@@ -1,4 +1,4 @@
-/* Reset some default browser styles */
+/* reset default browser styles */
 body, h1, h2, h3, p, ul, li {
     margin: 0;
     padding: 0;
@@ -13,17 +13,17 @@ body {
 
 a {
     text-decoration: none;
-    color: #FFC904; /* UCF Gold */
+    color: #FFC904; /* ucf gold found on their website*/
     transition: color 0.3s;
 }
 
 a:hover {
-    color: #FFCC00; /* Alternate UCF Gold on hover */
+    color: #FFCC00; /* alt ucf gold */
 }
 
 header {
-    background-color: #000000; /* UCF Black */
-    color: #FFC904; /* UCF Gold */
+    background-color: #000000; 
+    color: #FFC904; 
     text-align: center;
     padding: 1.5rem 0;
 }
@@ -34,7 +34,7 @@ header p {
 }
 
 nav ul {
-    background-color: #000000; /* UCF Black */
+    background-color: #000000; 
     overflow: auto;
 }
 
@@ -46,13 +46,13 @@ nav ul li {
 nav ul li a {
     display: block;
     padding: 0.5rem 1rem;
-    color: #FFC904; /* UCF Gold */
+    color: #FFC904; 
     transition: background-color 0.3s, color 0.3s;
 }
 
 nav ul li a:hover {
-    background-color: #FFC904; /* UCF Gold */
-    color: #000000; /* UCF Black */
+    background-color: #FFC904; 
+    color: #000000; 
 }
 
 main {
@@ -66,7 +66,7 @@ main {
 
 h1, h2, h3 {
     margin-bottom: 1rem;
-    color: #FFC904; /* UCF Gold */
+    color: #FFC904; 
 }
 
 p, ul {
@@ -100,8 +100,8 @@ iframe {
 footer {
     text-align: center;
     padding: 1rem 0;
-    background-color: #000000; /* UCF Black */
-    color: #FFC904; /* UCF Gold */
+    background-color: #000000; 
+    color: #FFC904; 
 }
 
 @media screen and (max-width: 768px) {
@@ -112,41 +112,41 @@ footer {
 
     nav ul li {
         float: none;
-        border-top: 1px solid #FFCC00; /* Alternate UCF Gold */
+        border-top: 1px solid #FFCC00; 
     }
 
     nav ul li:last-child {
-        border-bottom: 1px solid #FFCC00; /* Alternate UCF Gold */
+        border-bottom: 1px solid #FFCC00; 
     }
 }
 nav {
     text-align: center;
-    background-color: #000000; /* UCF Black */
+    background-color: #000000; 
 }
 
 nav ul {
-    display: inline-block; /* Makes the ul behave like an inline element but retain block properties */
+    display: inline-block; /*inline element but retain block propertiess*/
     padding: 0;
     list-style-type: none;
 }
 
 nav ul li {
-    display: inline-block; /* Display list items side by side */
+    display: inline-block; /* display list items side by side */
 }
 
 nav ul li a {
     display: block;
     padding: 0.5rem 1rem;
-    color: #FFC904; /* UCF Gold */
+    color: #FFC904; 
     transition: background-color 0.3s, color 0.3s;
 }
 
 nav ul li a:hover {
-    background-color: #FFC904; /* UCF Gold */
-    color: #000000; /* UCF Black */
+    background-color: #FFC904; 
+    color: #000000; 
 }
 nav ul li a.active {
-    background-color: #FFC904; /* UCF Gold */
-    color: #000000; /* UCF Black */
-    pointer-events: none; /* Makes the active link non-clickable */
+    background-color: #FFC904; 
+    color: #000000; 
+    pointer-events: none; /* make active link nonclickable */
 }
