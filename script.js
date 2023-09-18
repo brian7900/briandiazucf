@@ -1,11 +1,17 @@
+//wait until the document is fully loaded BEFORE! running script. use defer.
 document.addEventListener("DOMContentLoaded", function() {
 
+        //function to display a quiz and handle the results
     function displayQuiz(questions, containerId, submitId) {
+        //grt the container where the quiz will be displayed
         const quizContainer = document.getElementById(containerId);
         let output = [];
-
+              //loop through each question to generate its html
         questions.forEach((currentQuestion, questionNumber) => {
             const answers = [];
+          
+
+                //loop through each option for the current question
             for (let letter in currentQuestion.options) {
                 answers.push(
                     `<label>
@@ -14,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     </label><br>`
                 );
             }
+            //add question and its options to the output
             output.push(
                 `<div class="question">${currentQuestion.question}</div>
                 <div class="answers">${answers.join('')}</div><br>`
@@ -21,16 +28,18 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         quizContainer.innerHTML = output.join('');
-
+        
+            //eventlistener for submit button
         document.getElementById(submitId).addEventListener('click', function() {
             const answerContainers = quizContainer.querySelectorAll('.answers');
             let correct = 0;
-
+            
+            //check the answers
             questions.forEach((currentQuestion, questionNumber) => {
                 const answerContainer = answerContainers[questionNumber];
                 const selector = `input[name=${containerId}-question${questionNumber}]:checked`;
                 const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-
+                //if the answer is correct green. if wrong red.
                 if (userAnswer == currentQuestion.answer) {
                     correct++;
                     answerContainers[questionNumber].style.color = 'green';
@@ -132,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function() {
             answer: 3
         }
     ];
-
+    //display each quiz with displayQuiz function
     displayQuiz(appleQuestions, 'apple-quiz-container', 'apple-submit');
     displayQuiz(amazonQuestions, 'amazon-quiz-container', 'amazon-submit');
     displayQuiz(facebookQuestions, 'facebook-quiz-container', 'facebook-submit');
